@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AutorController;
 use Illuminate\Support\Facades\Route;
 
 /*

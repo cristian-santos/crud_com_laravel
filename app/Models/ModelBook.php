@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModelBook extends Model
 {
-    protected $table = 'book';
-    protected $fillable = ['title', 'id_user', 'pages', 'price'];
+    public $timestamps = false;
+    protected $table = 'tbl_livro';
+    protected $fillable = [
+        'nome_livro',
+        'nome_autor',
+        'cod_isbn',
+        'qtd_paginas',
+        'preco'
+    ];
 
     public function relUsers()
     {
