@@ -22,20 +22,23 @@ class AutorController extends Controller
     {
 
         $request->validate([
-           'nome_autor'    => 'required',
-           'dt_nasc'      => 'required'
-       ],[
-           'required' => 'Campo obrigatório',
-
-       ]);
-
-      $autor = new ModelAutor();
-      $autor->nome_autor = $request->nome_autor;
-      $autor->data_nasc  = $request->dt_nasc;
-      $autor->save();
-
-       return redirect()->route('autor.create')->with('success', 'autor registrado com sucesso');
-    }
+            'nome_autor'    => 'required|unique:tbl_autor',
+            'dt_nasc'      => 'required'
+        ],[
+            'required' => 'Campo obrigatório',
+            'unique'   => 'Esse registro já consta em nosso sistema'
+    
+        ]);
+    
+        $autor = new ModelAutor();
+        $autor->nome_autor = $request->nome_autor;
+        $autor->data_nasc  = $request->dt_nasc;
+        $autor->save();
+        
+        return redirect()
+                    ->route('autor.create')
+                    ->with('success', 'autor registrado com sucesso');
+        }
 
     public function show($id)
     {
